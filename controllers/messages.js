@@ -6,6 +6,7 @@ function sendMessage(userId, chatId, data) {
       chatId,
       sender: userId,
       statusMessageUserId: userId,
+      // content: data
     })
   );
 
