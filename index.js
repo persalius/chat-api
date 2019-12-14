@@ -17,9 +17,12 @@ const io = SocketIOServer(server);
 // Open MongoDB connection
 mongoose.Promise = Promise;
 
-mongoose.connect(MONGODB_URI, {
-  useMongoClient: true,
-});
+mongoose.connect(
+  MONGODB_URI,
+  {
+    useMongoClient: true,
+  }
+);
 
 const db = mongoose.connection;
 
