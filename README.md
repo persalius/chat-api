@@ -1,11 +1,14 @@
 ## API
+
 Current version of API is `v1`, so you need to specify the version of API before every route. For example:
+
 ```
 http://localhost:8000/v1/users/me
 http://localhost:8000/v1/chats
 ```
 
 ### HTTP
+
 Here's the map of API's HTTP routes:
 
 - `/` — routes related to authentication.
@@ -28,6 +31,7 @@ Here's the map of API's HTTP routes:
   - `/chats/:id/leave` **GET** — leave chat with specific `:id`.
 
 ### Sockets
+
 This API also emmits and listens some [socket.io](https://socket.io/) events.
 Sockets connection requires authentication with access-token. Here's an example of establishing sockets connection:
 
@@ -42,12 +46,15 @@ socket = SocketIOClient('path/to/api', {
 ```
 
 Here's the list of events:
+
 #### Emmiting
+
 - `new-message` — emmited when someone sends new message to specific chat.
 - `new-chat` — emmited when someone creates new chat.
 - `deleted-chat` — emmited when someone deletes a chat.
 
 #### Listening
+
 - `connection` — connection of socket.io client.
 - `mount-chat` — mount a client to listen for messages in chat with specific `:chatId`.
 - `unmount-chat` — unmout a client from listening for messages in chat with specific `:chatId`.
