@@ -15,21 +15,24 @@ const server = http.createServer(app);
 const io = SocketIOServer(server);
 
 // Cors
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-//   app.options('*', (req, res) => {
-//     res.header(
-//       'Access-Control-Allow-Methods',
-//       'GET, PATCH, PUT, POST, DELETE, OPTIONS'
-//     );
-//     res.send();
-//   });
-// });
+
+if (process.env.NODE_ENV === 'development') {
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
+    app.options('*', (request, response) => {
+      response.header(
+        'Access-Control-Allow-Methods',
+        'GET, PATCH, PUT, POST, DELETE, OPTIONS'
+      );
+      res.send();
+    });
+  });
+}
 
 // Open MongoDB connection
 mongoose.Promise = Promise;
